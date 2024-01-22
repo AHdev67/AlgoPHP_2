@@ -17,8 +17,7 @@ alimenterListeDeroulante($elements);<br>
     ];
 
     function alimenterListeDeroulante($elements){
-        $result= "<label for='civselect'>Civilité:</label>
-                <select name='' id='civselect'>";
+        $result= "<select><label>Civilité:</label>";
 
         foreach( $elements as $element ){
           $result.= "<option value='$element'>$element</option>";
