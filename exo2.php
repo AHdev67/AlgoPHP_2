@@ -14,6 +14,7 @@ Vous devrez appeler la fonction comme suit : afficherTableHTML($capitales);
 
 <?php
     function afficherTableauHTML($capitales){
+        //l'entête du tableau
         $result="<table border=1>
  
                     <thead>
@@ -23,13 +24,16 @@ Vous devrez appeler la fonction comme suit : afficherTableHTML($capitales);
                         </tr>
                     </thead>
                     <tbody>";
+        //le corps du tableau en fonction du nbr d'éléments du tableau     
         foreach($capitales as $pays => $capitale){
                     $result.= "<tr>
                                 <td>$pays</td>
                                 <td>$capitale</td>
                             </tr>";
         }
+        //ferme le tableau
         $result.="</tbody></table>";
+        //affichage
         return $result;
     }
 

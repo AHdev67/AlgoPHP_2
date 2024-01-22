@@ -15,16 +15,20 @@ Vous devrez appeler la fonction comme suit : convertirMajRouge($texte) ;
 </style>
 
 <?php 
+
+    //première version
     function convertirMajRouge ($machaine){
         $resultat= mb_strtoupper($machaine);
         $resultat= "<p class='red'>$resultat</p>";
         return $resultat;
     }
 
+    //version optimisée en une ligne
     function convertirMajRougeCompact($machaine){
         return "<p class='red'>".mb_strtoupper($machaine)."</p>";
     }
 
+    //version permettant de choisir la couleur
     function convertirMajRougeCouleur($machaine, $color){
         return "<p style='color:$color'>".mb_strtoupper($machaine)."</p>";
     }

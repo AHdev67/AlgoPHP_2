@@ -18,6 +18,7 @@ $capitales = array ("France"=>"Paris","Allemagne"=>"Berlin",<br>
 
 <?php
     function afficherTableauHTML($capitales){
+        //même structure de tableau que l'exo 2, sauf rajout d'une colonne "page wiki".
         $result="<table border=1>
  
                     <thead>
@@ -29,6 +30,7 @@ $capitales = array ("France"=>"Paris","Allemagne"=>"Berlin",<br>
                     </thead>
                     <tbody>";
 
+        //Lien wiki qui est complété par la valeur du tableau qui correspond à la clé affichée
         foreach($capitales as $pays => $capitale){
                     $result.= "<tr>
                                 <td>$pays</td>
@@ -48,6 +50,7 @@ $capitales = array ("France"=>"Paris","Allemagne"=>"Berlin",<br>
         "Espagne"=> "Madrid",
     ];
 
+    //organisation des clés dans l'ordre alphabétique.
     asort($capitales);
 
     echo afficherTableauHTML($capitales);
