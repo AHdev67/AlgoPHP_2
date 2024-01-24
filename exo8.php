@@ -16,8 +16,9 @@ repeterImage($url,4);<br>
     $nbrImages=4;
 
     function repeterImage($url, $nbrImages){
-        for($i= 1; $i <= $nbrImages; $i++){
+        for($i= 1; $i < $nbrImages; $i++){
            $result= "<img src=$url alt='la photo du chien là'/>";
+           echo $result;
         }
     return $result;
     }
