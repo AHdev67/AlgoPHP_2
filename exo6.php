@@ -15,7 +15,7 @@ alimenterListeDeroulante($elements);<br>
         "Madame",
         "Mademoiselle"
     ];
-
+    //Même méthode que l'exo5 mais adapté pour une liste déroulante.
     function alimenterListeDeroulante($elements){
         $result= "<select><label>Civilité:</label>";
 

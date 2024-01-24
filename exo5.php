@@ -13,6 +13,7 @@ afficherInput($nomsInput);<br>
 <?php
     $nomsInput= ["Nom", "Prenom", "Ville"];
 
+    //Pour chaque élément de tableau, un input est crée avec pour label la clé du tableau correspondant à l'iteration
     function afficherInput($nomsInput){
         $result= "<form>";
 

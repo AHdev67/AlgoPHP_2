@@ -1,4 +1,4 @@
-<h1>Exercice 7</h1>
+<h1>Exercice 8</h1>
 
 <p>
 Soit l’URL suivante : http://my.mobirise.com/data/userpic/764.jpg <br>
@@ -14,7 +14,7 @@ repeterImage($url,4);<br>
 <?php
     $url= "https://my.mobirise.com/data/userpic/764.jpg";
     $nbrImages=4;
-
+    //Pour chaque iteration de 1 (1ère image) à $nbrImage (=4), on génère une balise img contenant l'url de l'image à afficher stockée dans une var, puis on l'affiche.
     function repeterImage($url, $nbrImages){
         for($i= 1; $i < $nbrImages; $i++){
            $result= "<img src=$url alt='la photo du chien là'/>";
@@ -23,5 +23,5 @@ repeterImage($url,4);<br>
     return $result;
     }
 
-echo repeterImage($url, $nbrImages);
+    echo repeterImage($url, $nbrImages);
 ?>

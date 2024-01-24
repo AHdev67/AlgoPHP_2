@@ -15,7 +15,7 @@ genererCheckbox($elements);<br>
         "choix 2"=> "checked",
         "choix 3"=> "",
     ];
-
+    //Même méthode qu'avant mais pour un input type checkbox.
     function genererCheckbox($elements){
         $result= "<form>";
 

@@ -8,5 +8,6 @@ dans un nouvel onglet (_blank).
 <h2>Résultat</h2>
 
 <?php
+    //lien avec target="_blank" :)
     echo "<a href='https://elan-formation.fr' target='_blank'>Elan Formation</a>";
 ?>
