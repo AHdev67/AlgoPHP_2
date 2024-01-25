@@ -76,26 +76,24 @@ suivants :<br>
 
 //-------------------------------------------- METHODE ACCELERER --------------------------------------------
         public function accelerer(int $accel){
-            if ($this->_canStart== true){
+            if ($this->_canStart== true && $accel>0){
                 $this->_vitesseActuelle = $this->_vitesseActuelle +$accel;
                 echo"Le vehicule ".$this->_marque." ".$this->_modele." accélère de ".$accel. " km/h.<br>";
             }
             else{
-                echo "Ce vehicule ne peut pas accélérer car il est à l'arrêt, veuillez le démarrer.<br>";
+                echo "Ce vehicule ne peut pas accélérer car il est à l'arrêt.<br>";
             }
         }
 
 //-------------------------------------------- METHODE RALENTIR --------------------------------------------
         public function ralentir(int $slowdown){
-            if ($this->_canStart== true && $slowdown >= $this->_vitesseActuelle){
+            if ($this->_canStart== true && $slowdown <= $this->_vitesseActuelle){
                 $this->_vitesseActuelle = $this->_vitesseActuelle -$slowdown;
                 echo"Le vehicule ".$this->_marque." ".$this->_modele." décélère de ".$slowdown. " km/h.<br>";
             }
-            //condition ne marche pas :(
             else{
                 echo "Le vehicule ne peut pas ralentir, car il est à l'arrêt.<br>";
             }
-            
         }
 
 //-------------------------------------------- METHODE STOPPER --------------------------------------------
@@ -143,8 +141,11 @@ suivants :<br>
     $v2->ralentir(5);
     $v2->demarrer();
     $v2->demarrer();
+    $v2->accelerer(0);
+    $v2->accelerer(-2);
     $v2->accelerer(19);
     $v2->ralentir(7);
     $v2->ralentir(15);
     $v2->afficher();
+
 ?>
