@@ -22,12 +22,16 @@ suivants :<br>
         private int $_nbPortes;
         private float $_vitesseActuelle =0;
         private bool $_isStarted= false; //On ajoute un attribut bool afin de déterminer si le véhicule est allumé ou éteint (si le moteur est démarré ou coupé).
+        private static int $_i=0; //On ajoute un attribut statique qui servira de compteur d'intrecmentation pour générer l'ID de l'objet.
+        private int $_id; //On utilise un attribut pour stocker la valeur du compteur, qui correspond à l'ID de l'objet.
 
 //-------------------------------------------- CONSTRUCTEUR --------------------------------------------
-        public function __construct($marque, $modele, $nbPortes){
+        public function __construct(string $marque, string $modele, int $nbPortes){
             $this->_marque = $marque;
             $this->_modele = $modele;
             $this->_nbPortes = $nbPortes;
+            self::$_i++; // incrémentation du compteur
+            $this->_id = self::$_i; //attribution de la valeur du compteur à l'id.
         }
 
 //-------------------------------------------- GETTER/SETTER MARQUE --------------------------------------------
@@ -114,7 +118,7 @@ suivants :<br>
 //-------------------------------------------- METHODE AFFICHER --------------------------------------------
         public function afficher(){
             //On affiche le nom et le modèle ...
-            echo"<br>-------------- INFO VEHICULE --------------<br>";
+            echo"<br>-------------- INFO VEHICULE ".$this->_id. "--------------<br>"; //On concatène l'ID du véhicule au titre de l'affichage.
             echo"Nom et modèle du vehicule: ".$this->_marque." ".$this->_modele."<br>";
             echo"Nombre de portes: ".$this->_nbPortes."<br>";
             //... Puis on affiche si il est démarré ou à l'arrêt en fonction de son état.
