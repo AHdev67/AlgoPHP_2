@@ -48,6 +48,7 @@ echo $ve1->getInfos();<br>
         }
     }
 
+    //On utilise le mot clé extends pour indiquer que les objets de la classe VoitureElec (classe fille) appatiennent aussi à la classe Voiture (classe parent).
     class VoitureElec extends Voiture{
         private int $_autonomie;
 
@@ -65,7 +66,8 @@ echo $ve1->getInfos();<br>
             $this->_autonomie = $autonomie;
         }
 
-        //-------------------------------------------- METHODE AFFICHER --------------------------------------------
+        //-------------------------------------------- METHODE AFFICHER CLASSE FILLE --------------------------------------------
+        //(on appelle la méthode afficher de la classe Voiture, à laquelle on rajoute la propriété autonomie)
         public function afficher(){
             parent::afficher();
             echo" Autonomie: ".$this->_autonomie." heures.<br>";

@@ -21,7 +21,7 @@ A l’aide d’une boucle, afficher les informations des variables contenues dan
     function afficherTab($tableauValeurs){
         //Pour chaque clé du tableau, on effectue un var_dump de la valeur correspondante, que l'on affiche comme resultat.
         //La plupart du temps, var_dump($tableauValeurs); suffit pour l'affichage dont on a besoin (cela affichera aussi l'index correspondant à la valeur)
-        foreach ($tableauValeurs as $key => $value) {
+        foreach ($tableauValeurs as $value) {
             var_dump($value);
             echo"<br>";
         }

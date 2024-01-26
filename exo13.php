@@ -20,15 +20,14 @@ suivants :<br>
         private string $_marque;
         private string $_modele;
         private int $_nbPortes;
-        private float $_vitesseActuelle;
-        private bool $_canStart= false;
+        private float $_vitesseActuelle =0;
+        private bool $_isStarted= false; //On ajoute un attribut bool afin de déterminer si le véhicule est allumé ou éteint (si le moteur est démarré ou coupé).
 
 //-------------------------------------------- CONSTRUCTEUR --------------------------------------------
-        public function __construct($marque, $modele, $nbPortes, $vitesseActuelle){
+        public function __construct($marque, $modele, $nbPortes){
             $this->_marque = $marque;
             $this->_modele = $modele;
             $this->_nbPortes = $nbPortes;
-            $this->_vitesseActuelle = $vitesseActuelle;
         }
 
 //-------------------------------------------- GETTER/SETTER MARQUE --------------------------------------------
@@ -65,8 +64,9 @@ suivants :<br>
 
 //-------------------------------------------- METHODE DEMARRER --------------------------------------------
         public function demarrer(){
-            if ($this->_vitesseActuelle == 0 && $this->_canStart == false){
-                $this->_canStart = true;
+            //SI le véhicule ne roule pas (vitesse = 0) et qu'il n'a pas encore démarré, il peut démarrer
+            if ($this->_vitesseActuelle == 0 && $this->_isStarted == false){
+                $this->_isStarted = true;
                 echo"Le vehicule ".$this->_marque." ".$this->_modele." démarre.<br>";
             }
             else{
@@ -76,7 +76,8 @@ suivants :<br>
 
 //-------------------------------------------- METHODE ACCELERER --------------------------------------------
         public function accelerer(int $accel){
-            if ($this->_canStart== true && $accel>0){
+            //Si le véhicule a démarré et que le paramètre d'accélération est strictement supérieur à 0, il peut accélérer.
+            if ($this->_isStarted== true && $accel>0){
                 $this->_vitesseActuelle = $this->_vitesseActuelle +$accel;
                 echo"Le vehicule ".$this->_marque." ".$this->_modele." accélère de ".$accel. " km/h.<br>";
             }
@@ -87,7 +88,8 @@ suivants :<br>
 
 //-------------------------------------------- METHODE RALENTIR --------------------------------------------
         public function ralentir(int $ralentir){
-            if ($this->_canStart== true && $ralentir <= $this->_vitesseActuelle){
+            //Si le véhicule est démarré et que le paramètre de ralentissement est inferieur à la vitesse actuelle du véhicule
+            if ($this->_isStarted== true && $ralentir < $this->_vitesseActuelle){
                 $this->_vitesseActuelle = $this->_vitesseActuelle -$ralentir;
                 echo"Le vehicule ".$this->_marque." ".$this->_modele." décélère de ".$ralentir. " km/h.<br>";
             }
@@ -98,9 +100,10 @@ suivants :<br>
 
 //-------------------------------------------- METHODE STOPPER --------------------------------------------
         public function stop(){
-            if ($this->_canStart== true){
+            //Si le véhicule est démarré, sa vitesse passe à 0 et on "coupe le moteur".
+            if ($this->_isStarted== true){
                 $this->_vitesseActuelle = 0;
-                $this->_canStart = false;
+                $this->_isStarted = false;
                 echo "Ce vehicule est désormais à l'arrêt<br>";
             }
             else{
@@ -110,22 +113,25 @@ suivants :<br>
 
 //-------------------------------------------- METHODE AFFICHER --------------------------------------------
         public function afficher(){
+            //On affiche le nom et le modèle ...
             echo"<br>-------------- INFO VEHICULE --------------<br>";
             echo"Nom et modèle du vehicule: ".$this->_marque." ".$this->_modele."<br>";
             echo"Nombre de portes: ".$this->_nbPortes."<br>";
-            if ($this->_canStart==true){
+            //... Puis on affiche si il est démarré ou à l'arrêt en fonction de son état.
+            if ($this->_isStarted==true){
                 echo "Le vehicule ".$this->_marque. " est démarré.<br>";
             }
             else{
                 echo "Le vehicule ".$this->_marque." est à l'arrêt.<br>";
             }
+            //Enfin on affiche la vitesse actuelle.
             echo"Sa vitesse actuelle est de : ".$this->_vitesseActuelle."km/h.<br>";
             echo"----------------------------------------------------<br>";
         }
     }
 
 //----------------------------------------------------------------------------------------------------------
-    $v1= new Voiture("Fiat", "Multipla", 5, 0);
+    $v1= new Voiture("Fiat", "Multipla", 5);
     $v1->afficher();
     $v1->demarrer();
     $v1->accelerer(10);
@@ -134,7 +140,7 @@ suivants :<br>
     $v1->stop();
     $v1->afficher();
 
-    $v2= new Voiture("Renault", "Twingo",3, 0);
+    $v2= new Voiture("Renault", "Twingo",3);
     $v2->afficher();
     $v2->stop();
     $v2->accelerer(10);
