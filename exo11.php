@@ -11,8 +11,10 @@ formaterDateFr("2018-02-23");<br>
 
 <?php
     $date= new DateTime("2018-02-23");
+    $now= new DateTime();
     //IntlDateFormatter prends le fuseau horaire (fr_FR), le format de date (FULL, LONG, MEDIUM etc...) et le format de l'heure (pareil)
     $formatter= new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
     //ucfirst permet d'afficher la première lettre de la chaine en capitale
     echo ucfirst($formatter->format($date));
+    echo ucfirst($formatter->format($now));
 ?>

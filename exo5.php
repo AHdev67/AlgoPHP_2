@@ -15,10 +15,11 @@ afficherInput($nomsInput);<br>
 
     //Pour chaque élément de tableau, un input est crée avec pour label la clé du tableau correspondant à l'iteration
     function afficherInput($nomsInput){
-        $result= "<form>";
+        $result= "<form action='' method=''get>";
 
         foreach($nomsInput as $input){
-            $result.= "<label>$input:</label><br><input type='text'><br>";
+            $result.= "<label for='userinfo'>$input:</label><br>
+                        <input type='text' id='userinfo' name='usrinfo'><br>";
                     
         }
 
@@ -28,5 +29,4 @@ afficherInput($nomsInput);<br>
     }
 
     echo afficherInput($nomsInput);
-
 ?>

@@ -17,10 +17,11 @@ genererCheckbox($elements);<br>
     ];
     //Même méthode qu'avant mais pour un input type checkbox.
     function genererCheckbox($elements){
-        $result= "<form>";
+        $result= "<form action='' method='get'>";
 
         foreach($elements as $element=>$check){
-            $result.= "<input type='checkbox' $check><label>$element:</label><br>";
+            $result.= "<label for'choix'>$element:</label>
+                    <input id 'choix' name 'choiceinfo' type='checkbox' $check><br>";
         }
 
         $result.= "</form>";

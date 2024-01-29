@@ -39,31 +39,71 @@ de validation (submit)<br>
         "Intégrateur",
         "Chef de projet"
     ];
-    //Fonction pour afficher le formulaire en entier, prenant en paramètre les tableaux d'éléments déclarés plus haut
-    function afficherForm ($infosperso,$sexe,$ville,$profession){
-        $result= "<form>";
-        //on génère les champs de textes pour les infos personnelles de l'utilisateur
+
+    //On génère les champs de textes pour les infos personnelles de l'utilisateur
+    function genererTexte ($infosperso){
+        $result="";
         foreach ($infosperso as $element) {
-            $result.= "<label>$element:</label><br><input type='text'><br><br>";
+            $result.= "<label for='$element'>$element:</label><br>
+                    <input id='$element' name='mytextbox' type='text'><br><br>";
         }
-        //On génère des boutons radio pour selectionner le sexe de l'utilisateur
+
+        return $result;
+    }
+
+    //On génère des boutons radio pour selectionner le sexe de l'utilisateur
+    function genererRadio ($sexe){
+        $result="";
         $result.= "<br>Sexe:<br>";
         foreach ($sexe as $element) {
-            $result.= "<input type='radio' id='$element' name='myradio' value='$element'><label for='$element'>$element</label><br>";
+            $result.= "<label for='$element'>$element</label><input type='radio' id='$element' name='myradio' value='$element'><br>";
         }
-        //On génère une liste déroulante pour selectionner la ville
-        $result.= "<br><br>Ville:<br><select>";
+
+        return $result;
+    }
+
+    //On génère une liste déroulante pour selectionner la ville
+    function genererSelect ($ville){
+        $result="";
+        $result.= "<br><br>
+                <label for='select1'>Ville:</label>
+                <br>
+                <select id'select1' name='myselect'>";
         foreach ($ville as $element) {
             $result.= "<option value='$element'>$element</option>";
         }
         $result.= "</select><br>";
-        //Pareil mais pour la profession
-        $result.= "<br><br>Profession:<br><select>";
+
+        return $result;
+    }
+
+    //Pareil mais pour la profession
+    function genererSelect2 ($profession){
+        $result="";
+        $result.= "<br><br>
+                <label for='select2'>Profession:</label>
+                <br>
+                <select id'select2' name='myselect2'>";
         foreach ($profession as $element) {
             $result.= "<option value='$element'>$element</option>";
         }
+        $result.= "</select>";
+
+        return $result;
+    }
+
+
+    //Fonction pour afficher le formulaire en entier, prenant en paramètre les tableaux d'éléments déclarés plus haut
+    function afficherForm ($infosperso,$sexe,$ville,$profession){
+        $result= "<form action='' method='get'>";
+
+        echo genererTexte($infosperso);
+        echo genererRadio($sexe);
+        echo genererSelect($ville);
+        echo genererSelect2($profession);
+
         //On oublie pas le bouton submit
-        $result.= "</select><br><br><br><br><input type= 'submit'>";
+        $result.= "<br><br><br><br><input type= 'submit'></form>";
 
         return $result;
     }

@@ -16,11 +16,11 @@ repeterImage($url,4);<br>
     $nbrImages=4;
     //Pour chaque iteration de 1 (1ère image) à $nbrImage (=4), on génère une balise img contenant l'url de l'image à afficher stockée dans une var, puis on l'affiche.
     function repeterImage($url, $nbrImages){
-        for($i= 1; $i < $nbrImages; $i++){
-           $result= "<img src=$url alt='la photo du chien là'/>";
-           echo $result;
+        $result = "";
+        for($i= 1; $i <= $nbrImages; $i++){
+           $result .= "<img src=$url alt='la photo du chien là'/>";
         }
-    return $result;
+        return $result;
     }
 
     echo repeterImage($url, $nbrImages);

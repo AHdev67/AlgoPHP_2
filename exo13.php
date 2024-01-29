@@ -69,9 +69,9 @@ suivants :<br>
 //-------------------------------------------- METHODE DEMARRER --------------------------------------------
         public function demarrer(){
             //SI le véhicule ne roule pas (vitesse = 0) et qu'il n'a pas encore démarré, il peut démarrer
-            if ($this->_vitesseActuelle == 0 && $this->_isStarted == false){
+            if ($this->_vitesseActuelle == 0 && !$this->_isStarted){
                 $this->_isStarted = true;
-                echo"Le vehicule ".$this->_marque." ".$this->_modele." démarre.<br>";
+                echo"Le vehicule $this démarre.<br>";
             }
             else{
                 echo "Ce vehicule est déjà en marche.<br>";
@@ -81,9 +81,9 @@ suivants :<br>
 //-------------------------------------------- METHODE ACCELERER --------------------------------------------
         public function accelerer(int $accel){
             //Si le véhicule a démarré et que le paramètre d'accélération est strictement supérieur à 0, il peut accélérer.
-            if ($this->_isStarted== true && $accel>0){
+            if ($this->_isStarted && $accel>0){
                 $this->_vitesseActuelle = $this->_vitesseActuelle +$accel;
-                echo"Le vehicule ".$this->_marque." ".$this->_modele." accélère de ".$accel. " km/h.<br>";
+                echo"Le vehicule $this accélère de ".$accel. " km/h.<br>";
             }
             else{
                 echo "Ce vehicule ne peut pas accélérer car il est à l'arrêt.<br>";
@@ -93,19 +93,19 @@ suivants :<br>
 //-------------------------------------------- METHODE RALENTIR --------------------------------------------
         public function ralentir(int $ralentir){
             //Si le véhicule est démarré et que le paramètre de ralentissement est inferieur à la vitesse actuelle du véhicule
-            if ($this->_isStarted== true && $ralentir < $this->_vitesseActuelle){
+            if ($this->_isStarted && $ralentir < $this->_vitesseActuelle){
                 $this->_vitesseActuelle = $this->_vitesseActuelle -$ralentir;
-                echo"Le vehicule ".$this->_marque." ".$this->_modele." décélère de ".$ralentir. " km/h.<br>";
+                echo"Le vehicule $this décélère de ".$ralentir. " km/h.<br>";
             }
             else{
-                echo "Le vehicule ne peut pas ralentir, car il est à l'arrêt.<br>";
+                echo "Le vehicule ne peut pas ralentir, car soit il est à l'arrêt, soit la saisie de ralentissement est trop grande.<br>";
             }
         }
 
 //-------------------------------------------- METHODE STOPPER --------------------------------------------
         public function stop(){
             //Si le véhicule est démarré, sa vitesse passe à 0 et on "coupe le moteur".
-            if ($this->_isStarted== true){
+            if ($this->_isStarted){
                 $this->_vitesseActuelle = 0;
                 $this->_isStarted = false;
                 echo "Ce vehicule est désormais à l'arrêt<br>";
@@ -119,11 +119,11 @@ suivants :<br>
         public function afficher(){
             //On affiche le nom et le modèle ...
             echo"<br>-------------- INFO VEHICULE ".$this->_id. "--------------<br>"; //On concatène l'ID du véhicule au titre de l'affichage.
-            echo"Nom et modèle du vehicule: ".$this->_marque." ".$this->_modele."<br>";
+            echo"Nom et modèle du vehicule: $this<br>";
             echo"Nombre de portes: ".$this->_nbPortes."<br>";
             //... Puis on affiche si il est démarré ou à l'arrêt en fonction de son état.
             if ($this->_isStarted==true){
-                echo "Le vehicule ".$this->_marque. " est démarré.<br>";
+                echo "Le vehicule $this est démarré.<br>";
             }
             else{
                 echo "Le vehicule ".$this->_marque." est à l'arrêt.<br>";
@@ -131,6 +131,10 @@ suivants :<br>
             //Enfin on affiche la vitesse actuelle.
             echo"Sa vitesse actuelle est de : ".$this->_vitesseActuelle."km/h.<br>";
             echo"----------------------------------------------------<br>";
+        }
+
+        public function __toString(){
+            return "$this->_marque $this->_modele";
         }
     }
 

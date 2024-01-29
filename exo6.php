@@ -17,7 +17,8 @@ alimenterListeDeroulante($elements);<br>
     ];
     //Même méthode que l'exo5 mais adapté pour une liste déroulante.
     function alimenterListeDeroulante($elements){
-        $result= "<select><label>Civilité:</label>";
+        $result= "<label for 'civilite'>Civilité:</label>
+                <select id 'civilite'name='civilinfo'>";
 
         foreach( $elements as $element ){
           $result.= "<option value='$element'>$element</option>";

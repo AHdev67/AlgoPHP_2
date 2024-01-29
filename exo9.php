@@ -18,7 +18,7 @@ afficherRadio($nomsRadio);<br>
 
     //Même méthode que les exos précedants adaptée pour un input type radio, en ajoutant un name fixe pour s'assurer que les input partagent leur exclusivité.
     function afficherRadio($elements){
-        $result= "<form>";
+        $result= "<form action='' method='get'>";
 
         foreach ($elements as $element){
             $result.= "<input type='radio' id='$element' name='myradio' value='$element'><label for='$element'>$element</label><br>";
